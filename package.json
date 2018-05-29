@@ -1,0 +1,30 @@
+{
+  "name": "match8",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --extensions '.mjs' -d lib",
+    "prepublish": "npm run test && npm run build",
+    "test": "mocha --compilers js:babel-core/register ./src/**/*.spec.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "prettier": {
+    "tabWidth": 4,
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "prettier": "^1.12.1",
+    "ramda": "^0.25.0"
+  }
+}
