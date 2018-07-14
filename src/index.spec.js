@@ -1,6 +1,5 @@
-import match8 from './index.mjs'
+import match8 from './index.js'
 import chai from 'chai'
-import R from 'ramda'
 
 const expect = chai.expect
 
