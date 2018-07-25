@@ -1,12 +1,12 @@
-import match8 from './index.js'
+import { matchFirst } from './index.js'
 import chai from 'chai'
 
 const expect = chai.expect
 
 describe('index.js', () => {
-    describe('match8', () => {
+    describe('matchFirst', () => {
         it('should match numbers', () => {
-            const fib = match8([0, 1, () => 1], [n => fib(n - 2) + fib(n - 1)])
+            const fib = matchFirst([0, 1, () => 1], [n => fib(n - 2) + fib(n - 1)])
 
             expect(fib(0)).to.equal(1)
             expect(fib(1)).to.equal(1)
@@ -16,7 +16,7 @@ describe('index.js', () => {
         })
 
         it('should match booleans', () => {
-            const negate = match8([false, () => true], [() => false])
+            const negate = matchFirst([false, () => true], [() => false])
 
             expect(negate(true)).to.equal(false)
             expect(negate(false)).to.equal(true)
@@ -25,7 +25,7 @@ describe('index.js', () => {
         })
 
         it('should match strings', () => {
-            const rotColors = match8(
+            const rotColors = matchFirst(
                 ['green', () => 'blue'],
                 ['blue', () => 'red'],
                 ['red', () => 'green'],
@@ -44,7 +44,7 @@ describe('index.js', () => {
             const isEven = num => num % 2 === 0
             const isOdd = num => !isEven(num)
 
-            const evenOrOdd = match8(
+            const evenOrOdd = matchFirst(
                 [isNotANumber, () => 'not a number'],
                 [isOdd, () => 'odd'],
                 [isEven, () => 'even'],
@@ -59,7 +59,7 @@ describe('index.js', () => {
         })
 
         it('should match array of numbers', () => {
-            const arrTest = match8(
+            const arrTest = matchFirst(
                 [[], () => 'empty'],
                 [[0, 1, 2, 3], () => '0,1,2,3'],
                 [[[4, 5, 6, 7]], () => '4,5,6,7'],
@@ -76,7 +76,7 @@ describe('index.js', () => {
             const lessThan = val => num => num < val
             const between = (valA, valB) => num => num >= valA && num <= valB
             const greaterThan = val => num => num > val
-            const tmpCheck = match8(
+            const tmpCheck = matchFirst(
                 [lessThan(20), () => 'freezing'],
                 [between(20, 36), () => 'ok'],
                 [greaterThan(36), () => 'too hot'],
@@ -90,7 +90,7 @@ describe('index.js', () => {
 
         it('should match objects', () => {
             const isOne = num => num === 1
-            const rotColors = match8(
+            const rotColors = matchFirst(
                 [{ type: 'A', val: 1 }, () => 'A1'],
                 [{ type: 'A', val: 2 }, () => 'A2'],
                 [{ type: 'B', val: isOne }, () => 'B1'],
